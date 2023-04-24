@@ -71,6 +71,7 @@ function createContainerElement() {
   const containerElement = document.createElement("div");
   containerElement.setAttribute("id", "beyondwords-player");
   containerElement.style.width = "100%";
+  containerElement.style.marginBottom = "1em";
   return containerElement;
 }
 
