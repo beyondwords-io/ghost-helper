@@ -4,6 +4,7 @@
   "author": "BeyondWords Developers",
   "description": "Ghost helper script for BeyondWords Player",
   "main": "dist/ghost-helper.umd.js",
+  "license": "MIT",
   "scripts": {
     "build": "vite build",
     "lint": "eslint src"
