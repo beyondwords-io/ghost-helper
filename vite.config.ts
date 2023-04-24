@@ -5,6 +5,7 @@ export default defineConfig({
   build: {
     outDir: "./dist",
     emptyOutDir: false,
+    sourcemap: true,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "GhostHelper",
