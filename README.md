@@ -1,7 +1,6 @@
 # BeyondWords Player Ghost helper
 
 [![Build](https://github.com/beyondwords-io/ghost-helper/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/beyondwords-io/ghost-helper/actions/workflows/build.yml)
-
 [![npm version](https://badge.fury.io/js/@beyondwords%2Fghost-helper.svg)](https://badge.fury.io/js/@beyondwords%2Fghost-helper)
 
 Automatically create and embed audio versions of Ghost posts.
