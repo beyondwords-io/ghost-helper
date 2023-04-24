@@ -15,8 +15,15 @@ Automatically create and embed audio versions of Ghost posts.
 
 To work on the project you must have installed:
 
-- Node.js 16 or higher
+- [Node.js](https://nodejs.org/en/download) 16 or higher
+
 - npm 8 or higher
+
+- Install NPM dependencies:
+
+    ```
+    npm install
+    ```
 
 ## Build
 
