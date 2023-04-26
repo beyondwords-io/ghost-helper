@@ -12,7 +12,17 @@ The Ghost Helper aims to make the integration with [Ghosts](https://ghost.org) e
 
 # Examples
 
-To customize the position of the player you can use the `target` argument:
+## Basic
+
+```html
+<script async defer src="https://proxy.beyondwords.io/npm/@beyondwords/ghost-helper@latest/dist/umd.js"
+  onload="new BeyondWords.GhostHelper({
+    projectId: <ID>
+  })">
+</script>
+```
+
+## Custom position
 
 ```html
 <script async defer src="https://proxy.beyondwords.io/npm/@beyondwords/ghost-helper@latest/dist/umd.js"
@@ -23,7 +33,7 @@ To customize the position of the player you can use the `target` argument:
 </script>
 ```
 
-To apply additional CSS styles to the player you can use `#beyondwords-player` selector:
+## Custom styles
 
 ```html
 <style>
@@ -38,7 +48,8 @@ To apply additional CSS styles to the player you can use `#beyondwords-player` s
 </script>
 ```
 
-To get a reference to the underlying Player instance you can use the `player` property:
+## Player reference
+
 ```js
 const helper = new BeyondWords.GhostHelper({
   projectId: <ID>
@@ -47,9 +58,13 @@ await helper.playerLoader;
 helper.player.addEventListener("<any>", console.log);
 ```
 
+## Other
+
 For further customization you can refer to the [BeyondWords Player](https://github.com/beyondwords-io/player) documentation as the arguments of the GhostHelper constructor matches the BeyondWords Player constructor.
 
 # Development
+
+## Prerequisites
 
 To work on the project you must have installed:
 
