@@ -2,7 +2,7 @@
   "name": "@beyondwords/ghost-helper",
   "version": "0.0.1-rc.3",
   "author": "BeyondWords Developers",
-  "description": "Ghost helper script for BeyondWords Player",
+  "description": "BeyondWords Player integration for Ghost",
   "main": "dist/umd.js",
   "license": "MIT",
   "scripts": {
