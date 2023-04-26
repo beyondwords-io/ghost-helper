@@ -39,6 +39,10 @@ export default class GhostHelper {
   }
 
   private resolveTargetElement() {
+    if (this.props.target instanceof Element) {
+      return this.props.target;
+    }
+
     if (typeof this.props.target === "string") {
       const targetElement = document.querySelector(this.props.target);
       if (!targetElement) {
