@@ -118,7 +118,6 @@ export default class GhostHelper {
     const playerTargetElement = document.createElement("div");
     playerTargetElement.setAttribute("id", "beyondwords-player");
     playerTargetElement.style.width = "100%";
-    playerTargetElement.style.marginBottom = "1em";
     targetElement.insertBefore(playerTargetElement, targetElement.firstChild);
     return playerTargetElement;
   }
