@@ -4,14 +4,20 @@ export default class GhostHelper {
 
   private readonly props: { [key: string]: unknown; };
 
-  public readonly player: Promise<unknown>;
+  public readonly playerLoader: Promise<void>;
+
+  public player: unknown;
 
   constructor(props) {
     this.props = props;
-    this.player = this.init().catch((error) => {
-      console.error("BeyondWords.GhostHelper", error);
-      throw error;
-    });
+    this.playerLoader = this.init()
+      .then((player) => {
+        this.player = player;
+      })
+      .catch((error) => {
+        console.error("BeyondWords.GhostHelper", error);
+        throw error;
+      });
   }
 
   private async init() {
