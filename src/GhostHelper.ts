@@ -1,5 +1,6 @@
 import BeyondWords from "@beyondwords/player";
 import resolveTargetElement from "./resolveTargetElement";
+import domContentLoaded from "./domContentLoaded";
 
 export default class GhostHelper {
 
@@ -23,20 +24,13 @@ export default class GhostHelper {
   }
 
   private async init() {
-    await this.domContentLoaded();
+    await domContentLoaded();
     const targetElement = resolveTargetElement(this.props.element);
     const playerContainerElement = this.attachPlayerContainerElement(targetElement);
     return new BeyondWords.Player({
       sourceUrl: window.location.href,
       ...this.props,
       target: playerContainerElement,
-    });
-  }
-
-  private async domContentLoaded(): Promise<void> {
-    if (document.readyState === "complete" || document.readyState === "interactive") return;
-    return new Promise((resolve) => {
-      document.addEventListener("DOMContentLoaded", () => resolve());
     });
   }
 
