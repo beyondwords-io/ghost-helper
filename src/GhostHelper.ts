@@ -1,3 +1,5 @@
+import BeyondWords from "@beyondwords/player";
+
 export default class GhostHelper {
 
   private readonly props: { [key: string]: unknown; };
@@ -21,16 +23,11 @@ export default class GhostHelper {
   private async init() {
     await this.domContentLoaded();
     const targetElement = this.resolveTargetElement();
-    const playerTargetElement = this.attachPlayerTargetElement(targetElement);
-    if (!window.BeyondWords?.Player) {
-      throw new Error("BeyondWords Player SDK failed to initialize");
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return new (window.BeyondWords.Player as any)({
+    const playerContainerElement = this.attachPlayerContainerElement(targetElement);
+    return new BeyondWords.Player({
       sourceUrl: window.location.href,
       ...this.props,
-      target: playerTargetElement,
+      target: playerContainerElement,
     });
   }
 
@@ -89,11 +86,11 @@ export default class GhostHelper {
     throw new Error("Target not found. See https://ghost.org/integrations/beyondwords/#advanced for further information.");
   }
 
-  private attachPlayerTargetElement(targetElement: Element) {
-    const playerTargetElement = document.createElement("div");
-    playerTargetElement.setAttribute("id", "beyondwords-player");
-    playerTargetElement.style.width = "100%";
-    targetElement.insertBefore(playerTargetElement, targetElement.firstChild);
-    return playerTargetElement;
+  private attachPlayerContainerElement(targetElement: Element) {
+    const playerContainerElement = document.createElement("div");
+    playerContainerElement.setAttribute("id", "beyondwords-player");
+    playerContainerElement.style.width = "100%";
+    targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
+    return playerContainerElement;
   }
 }
