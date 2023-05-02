@@ -1,19 +1,21 @@
 import BeyondWords from "@beyondwords/player";
 import resolveTargetElement from "./resolveTargetElement";
 import domContentLoaded from "./domContentLoaded";
+import createPlayerContainerElement from "./createPlayerContainerElement";
+
+export type Props = {
+  target?: Element | string | null,
+  [key: string]: unknown;
+}
 
 export default class GhostHelper {
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private readonly props: { [key: string]: any; };
 
   public readonly playerLoader: Promise<void>;
 
   public player: unknown;
 
-  constructor(props) {
-    this.props = props;
-    this.playerLoader = this.init()
+  constructor(props: Props) {
+    this.playerLoader = this.init(props)
       .then((player) => {
         this.player = player;
       })
@@ -23,22 +25,15 @@ export default class GhostHelper {
       });
   }
 
-  private async init() {
+  private async init(props: Props) {
     await domContentLoaded();
-    const targetElement = resolveTargetElement(this.props.element);
-    const playerContainerElement = this.attachPlayerContainerElement(targetElement);
+    const targetElement = resolveTargetElement(props.target);
+    const playerContainerElement = createPlayerContainerElement();
+    targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
     return new BeyondWords.Player({
       sourceUrl: window.location.href,
-      ...this.props,
+      ...props,
       target: playerContainerElement,
     });
-  }
-
-  private attachPlayerContainerElement(targetElement: Element) {
-    const playerContainerElement = document.createElement("div");
-    playerContainerElement.setAttribute("id", "beyondwords-player");
-    playerContainerElement.style.width = "100%";
-    targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
-    return playerContainerElement;
   }
 }
