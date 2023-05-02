@@ -1,7 +1,5 @@
 export default class GhostHelper {
 
-  private static playerScriptLoader: Promise<void> | undefined = undefined;
-
   private readonly props: { [key: string]: unknown; };
 
   public readonly playerLoader: Promise<void>;
@@ -24,7 +22,6 @@ export default class GhostHelper {
     await this.domContentLoaded();
     const targetElement = this.resolveTargetElement();
     const playerTargetElement = this.attachPlayerTargetElement(targetElement);
-    await this.loadPlayerScript(targetElement);
     if (!window.BeyondWords?.Player) {
       throw new Error("BeyondWords Player SDK failed to initialize");
     }
@@ -90,28 +87,6 @@ export default class GhostHelper {
     }
 
     throw new Error("Target not found. See https://ghost.org/integrations/beyondwords/#advanced for further information.");
-  }
-
-  private async loadPlayerScript(targetElement: Element) {
-    if (typeof GhostHelper.playerScriptLoader === "undefined") {
-      GhostHelper.playerScriptLoader = new Promise((resolve, reject) => {
-        const playerScriptElement = document.createElement("script");
-        playerScriptElement.onload = () => {
-          playerScriptElement.onload = null;
-          playerScriptElement.onerror = null;
-          resolve();
-        };
-        playerScriptElement.onerror = (event) => {
-          playerScriptElement.onload = null;
-          playerScriptElement.onerror = null;
-          reject(event);
-        };
-        playerScriptElement.src = import.meta.env.VITE_PLAYER_SRC_URL;
-        targetElement.insertBefore(playerScriptElement, targetElement.firstChild);
-      });
-    }
-
-    return GhostHelper.playerScriptLoader;
   }
 
   private attachPlayerTargetElement(targetElement: Element) {
