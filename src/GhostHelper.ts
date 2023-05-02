@@ -1,8 +1,10 @@
 import BeyondWords from "@beyondwords/player";
+import resolveTargetElement from "./resolveTargetElement";
 
 export default class GhostHelper {
 
-  private readonly props: { [key: string]: unknown; };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private readonly props: { [key: string]: any; };
 
   public readonly playerLoader: Promise<void>;
 
@@ -22,7 +24,7 @@ export default class GhostHelper {
 
   private async init() {
     await this.domContentLoaded();
-    const targetElement = this.resolveTargetElement();
+    const targetElement = resolveTargetElement(this.props.element);
     const playerContainerElement = this.attachPlayerContainerElement(targetElement);
     return new BeyondWords.Player({
       sourceUrl: window.location.href,
@@ -36,54 +38,6 @@ export default class GhostHelper {
     return new Promise((resolve) => {
       document.addEventListener("DOMContentLoaded", () => resolve());
     });
-  }
-
-  private resolveTargetElement() {
-    if (this.props.target instanceof Element) {
-      return this.props.target;
-    }
-
-    if (typeof this.props.target === "string") {
-      const targetElement = document.querySelector(this.props.target);
-      if (!targetElement) {
-        throw new Error(`Target element "${this.props.target}" not found.`);
-      }
-
-      return targetElement;
-    }
-
-    const beyondwordsTargetElement = document.querySelector(".beyondwords-target");
-    if (beyondwordsTargetElement) {
-      return beyondwordsTargetElement;
-    }
-
-    const isPostTemplate = document.body.classList.contains("post-template");
-    const isPageTemplate = document.body.classList.contains("page-template");
-    if (!isPostTemplate && !isPageTemplate) {
-      throw new Error("Player is only available on Ghost Posts and Pages.");
-    }
-
-    const postFullContentElement = document.querySelector(".post-full-content");
-    if (postFullContentElement) {
-      return postFullContentElement;
-    }
-
-    const articleElement = document.querySelector("article");
-    if (articleElement) {
-      const headerElement = articleElement.querySelector("header");
-      if (headerElement) {
-        return headerElement;
-      }
-
-      return articleElement;
-    }
-
-    const contentElement = document.querySelector(".content");
-    if (contentElement) {
-      return contentElement;
-    }
-
-    throw new Error("Target not found. See https://ghost.org/integrations/beyondwords/#advanced for further information.");
   }
 
   private attachPlayerContainerElement(targetElement: Element) {
