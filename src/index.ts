@@ -1,6 +1,6 @@
+import BeyondWords from "@beyondwords/player";
 import GhostHelper from "./GhostHelper";
 
-window.BeyondWords ||= { Player: undefined };
-window.BeyondWords.GhostHelper = GhostHelper;
+BeyondWords.GhostHelper = GhostHelper;
 
 export default GhostHelper;
