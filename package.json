@@ -1,6 +1,6 @@
 {
   "name": "@beyondwords/ghost-helper",
-  "version": "0.0.1-rc.5",
+  "version": "0.0.1-rc.6",
   "author": "BeyondWords Developers",
   "description": "BeyondWords Player integration for Ghost",
   "main": "dist/umd.js",
