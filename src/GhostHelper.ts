@@ -37,8 +37,8 @@ export default class GhostHelper {
     const playerContainerElement = createPlayerContainerElement();
     targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
     if (props.assignMarkersEnabled) {
-      const contentElement = resolveContentElement(props.contentTarget);
-      assignMarkers(contentElement);
+      const contentTargetElement = resolveContentElement(props.contentTarget);
+      assignMarkers(contentTargetElement);
     }
     return new BeyondWords.Player({
       sourceUrl: window.location.href,
