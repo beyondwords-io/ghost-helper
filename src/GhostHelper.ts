@@ -19,8 +19,6 @@ export default class GhostHelper {
   public player: unknown;
 
   constructor(props: Props) {
-    if (!("assignMarkersEnabled" in props)) props.assignMarkersEnabled = true;
-
     this.playerLoader = this.init(props)
       .then((player) => {
         this.player = player;
