@@ -33,6 +33,18 @@ The Ghost Helper aims to make the integration with [Ghosts](https://ghost.org) e
 </script>
 ```
 
+## Segments Playback
+
+```html
+<script async defer src="https://proxy.beyondwords.io/npm/@beyondwords/ghost-helper@latest/dist/umd.js"
+  onload="new BeyondWords.GhostHelper({
+    projectId: <ID>,
+    assignMarkersEnabled: true,
+    contentTarget: '.c-content'
+  })">
+</script>
+```
+
 ## Custom styles
 
 ```html
