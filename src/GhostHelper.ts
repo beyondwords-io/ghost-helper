@@ -6,14 +6,13 @@ import createPlayerContainerElement from "./createPlayerContainerElement";
 import assignMarkers from "./assignMarkers";
 
 export type Props = {
-  target?: Element | string | null,
-  contentTarget?: Element | string | null,
-  assignMarkersEnabled?: boolean,
+  target?: Element | string | null;
+  contentTarget?: Element | string | null;
+  assignMarkersEnabled?: boolean;
   [key: string]: unknown;
-}
+};
 
 export default class GhostHelper {
-
   static #instances: GhostHelper[] = [];
 
   public readonly playerLoader: Promise<void>;

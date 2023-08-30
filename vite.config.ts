@@ -9,8 +9,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "GhostHelper",
-      fileName: format => `${format}.js`,
+      fileName: (format) => `${format}.js`,
       formats: ["umd"],
     },
-  }
+  },
 });
