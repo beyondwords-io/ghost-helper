@@ -4,7 +4,7 @@
   "author": "BeyondWords Developers",
   "description": "BeyondWords Player integration for Ghost",
   "main": "dist/umd.js",
-  "license": "MIT",
+  "license": "See license in README.md",
   "scripts": {
     "build": "vite build",
     "lint": "eslint src"
