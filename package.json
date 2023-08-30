@@ -7,7 +7,7 @@
   "license": "See license in README.md",
   "scripts": {
     "build": "vite build",
-    "lint": "eslint src"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/node": "^20.5.7",
