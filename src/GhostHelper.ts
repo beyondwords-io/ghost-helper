@@ -15,6 +15,8 @@ export type Props = {
 export default class GhostHelper {
   static #instances: GhostHelper[] = [];
 
+  static version: string = "latest";
+
   public readonly playerLoader: Promise<void>;
 
   public player: unknown;
@@ -34,7 +36,7 @@ export default class GhostHelper {
   private async init(props: Props) {
     await domContentLoaded();
     const targetElement = resolveTargetElement(props.target);
-    const BeyondWordsPlayer = await loadBeyondWordsPlayerSdk(targetElement);
+    const BeyondWordsPlayer = await loadBeyondWordsPlayerSdk(targetElement, GhostHelper.version);
     const playerContainerElement = createPlayerContainerElement();
     targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
     if (props.assignMarkersEnabled) {

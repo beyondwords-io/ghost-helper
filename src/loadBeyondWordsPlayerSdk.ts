@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 let sdkLoader: Promise<any> | null = null;
 
-export default async function loadBeyondWordsPlayerSdk(targetElement: Element, version: string = "latest"): Promise<any> {
+export default async function loadBeyondWordsPlayerSdk(targetElement: Element, version: string): Promise<any> {
   if (!(sdkLoader instanceof Promise)) {
     sdkLoader = new Promise((resolve, reject) => {
       const scriptElement = document.createElement("script");
