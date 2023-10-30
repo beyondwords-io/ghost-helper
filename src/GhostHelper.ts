@@ -1,4 +1,4 @@
-import BeyondWords from "@beyondwords/player";
+import loadBeyondWordsPlayerSdk from "./loadBeyondWordsPlayerSdk";
 import resolveTargetElement from "./resolveTargetElement";
 import resolveContentElement from "./resolveContentElement";
 import domContentLoaded from "./domContentLoaded";
@@ -14,6 +14,8 @@ export type Props = {
 
 export default class GhostHelper {
   static #instances: GhostHelper[] = [];
+
+  static version: string = "latest";
 
   public readonly playerLoader: Promise<void>;
 
@@ -34,13 +36,14 @@ export default class GhostHelper {
   private async init(props: Props) {
     await domContentLoaded();
     const targetElement = resolveTargetElement(props.target);
+    const BeyondWordsPlayer = await loadBeyondWordsPlayerSdk(targetElement, GhostHelper.version);
     const playerContainerElement = createPlayerContainerElement();
     targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
     if (props.assignMarkersEnabled) {
       const contentTargetElement = resolveContentElement(props.contentTarget);
       assignMarkers(contentTargetElement);
     }
-    return new BeyondWords.Player({
+    return new BeyondWordsPlayer({
       sourceUrl: window.location.href,
       ...props,
       target: playerContainerElement,

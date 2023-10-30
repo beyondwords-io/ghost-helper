@@ -1,4 +1,3 @@
-import "@beyondwords/player";
 import GhostHelper from "./GhostHelper";
 
 if (typeof window !== "undefined") {
