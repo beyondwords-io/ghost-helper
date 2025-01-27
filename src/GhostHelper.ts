@@ -50,7 +50,17 @@ export default class GhostHelper {
     });
   }
 
+  public destroy() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (this.player as any)?.destroy();
+    GhostHelper.#instances = GhostHelper.#instances.filter((p) => p !== this);
+  }
+
   static instances() {
     return [...GhostHelper.#instances];
+  }
+
+  static destroyAll() {
+    GhostHelper.#instances.forEach((p) => p.destroy());
   }
 }
