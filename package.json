@@ -1,6 +1,6 @@
 {
   "name": "@beyondwords/ghost-helper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "BeyondWords Developers",
   "description": "BeyondWords Player integration for Ghost",
   "repository": "github:BeyondWords-io/ghost-helper",
