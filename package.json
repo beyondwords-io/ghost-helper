@@ -3,7 +3,10 @@
   "version": "0.2.2",
   "author": "BeyondWords Developers",
   "description": "BeyondWords Player integration for Ghost",
-  "repository": "github:BeyondWords-io/ghost-helper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beyondwords-io/ghost-helper"
+  },
   "main": "dist/umd.js",
   "license": "See license in README.md",
   "scripts": {
