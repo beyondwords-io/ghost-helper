@@ -1,14 +1,11 @@
 import loadBeyondWordsPlayerSdk from "./loadBeyondWordsPlayerSdk";
 import resolveTargetElement from "./resolveTargetElement";
-import resolveContentElement from "./resolveContentElement";
 import domContentLoaded from "./domContentLoaded";
 import createPlayerContainerElement from "./createPlayerContainerElement";
-import assignMarkers from "./assignMarkers";
 
 export type Props = {
   target?: Element | string | null;
   contentTarget?: Element | string | null;
-  assignMarkersEnabled?: boolean;
   [key: string]: unknown;
 };
 
@@ -39,10 +36,6 @@ export default class GhostHelper {
     const BeyondWordsPlayer = await loadBeyondWordsPlayerSdk(targetElement, GhostHelper.version);
     const playerContainerElement = createPlayerContainerElement();
     targetElement.insertBefore(playerContainerElement, targetElement.firstChild);
-    if (props.assignMarkersEnabled) {
-      const contentTargetElement = resolveContentElement(props.contentTarget);
-      assignMarkers(contentTargetElement);
-    }
     return new BeyondWordsPlayer({
       sourceUrl: window.location.href,
       ...props,
